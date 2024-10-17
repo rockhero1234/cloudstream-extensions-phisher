@@ -10,7 +10,7 @@ import com.lagradost.cloudstream3.utils.loadExtractor
 import org.jsoup.nodes.Element
 import android.util.Log
 
-class Owmfmx : MainAPI() { // all providers must be an instance of MainAPI
+class Ownfmx : MainAPI() { // all providers must be an instance of MainAPI
     override var mainUrl = "https://ownfmx.com/"
     override var name = "ownfmx"
     override val hasMainPage = true
