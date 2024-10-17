@@ -30,7 +30,7 @@ class Ownfmx : MainAPI() { // all providers must be an instance of MainAPI
         }
     }
     override val mainPage = mainPageOf(
-        "$mainUrl/movies" to "Latest",
+        "movies" to "Latest",
         //"$mainUrl/category/bollywood-featured" to "Bollywood",
         //"$mainUrl/language/hindi-dubbed" to "Hindi Dubbed",
         //"$mainUrl/category/hollywood-featured" to "Hollywood"
