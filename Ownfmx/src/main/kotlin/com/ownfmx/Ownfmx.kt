@@ -41,11 +41,12 @@ class Ownfmx : MainAPI() { // all providers must be an instance of MainAPI
         page: Int,
         request: MainPageRequest
     ): HomePageResponse {
-        Log.d("data",request.data)
+        
         val url = "$mainUrl/movies?page=$page/"
         val document = app.get(url).document
-        Log.d("data",document.select("div.movie-card").toString())
-        val home = document.select("div.movie-card").mapNotNull {
+        Log.d("data",document.toString())
+        Log.d("movies",document.select(".movie-card").toString())
+        val home = document.select(".movie-card").mapNotNull {
             toResult(it)
         }
         return newHomePageResponse(request.name, home)
