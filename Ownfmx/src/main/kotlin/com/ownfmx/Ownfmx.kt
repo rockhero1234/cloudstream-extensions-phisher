@@ -44,7 +44,7 @@ class Ownfmx : MainAPI() { // all providers must be an instance of MainAPI
         request: MainPageRequest
     ): HomePageResponse {
         
-        val url = "$mainUrl/{request.data}?page=page/"
+        val url = "$mainUrl/${request.data}?page=$page/"
         val document = app.get(url,headers=headerss).document
         
         val home = document.select(".movie-card").mapNotNull {
@@ -99,15 +99,15 @@ class Ownfmx : MainAPI() { // all providers must be an instance of MainAPI
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit
     ): Boolean {
-        val fl = app.get(data).document.select("a[href*='https://filelions.to']").first().attr("href").toString()
-        Log.d("vidhidelink",fl)
+        val src = app.get(data).document.select("iframe").attr("src").toString()
+    
         loadExtractor(
-                fl,
+                src,
                 "$mainUrl/",
                 subtitleCallback,
                 callback
-            )
-        return true
+           
+        )
     }
 
 
