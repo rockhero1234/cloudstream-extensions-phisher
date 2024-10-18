@@ -19,7 +19,9 @@ class Ownfmx : MainAPI() { // all providers must be an instance of MainAPI
     override val supportedTypes = setOf(
         TvType.Movie,
     )
-
+    val headerss = mapOf(
+    "User-Agent" to "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:92.0) Gecko/20100101 Firefox/92.0"
+   )
     private fun toResult(post: Element): SearchResponse {
         val url = post.select("a").attr("href")
         val title = post.select("img").attr("alt").toString()
@@ -43,7 +45,7 @@ class Ownfmx : MainAPI() { // all providers must be an instance of MainAPI
     ): HomePageResponse {
         
         val url = "$mainUrl/movies?page=1/"
-        val document = app.get(url).document
+        val document = app.get(url,headers=headerss).document
         Log.d("data",document.toString())
         Log.d("movies",document.select(".movie-card").toString())
         val home = document.select(".movie-card").mapNotNull {
