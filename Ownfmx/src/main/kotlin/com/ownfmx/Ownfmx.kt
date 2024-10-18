@@ -24,6 +24,7 @@ class Ownfmx : MainAPI() { // all providers must be an instance of MainAPI
         val url = post.select("a").attr("href")
         val title = post.select("img").attr("alt").toString()
         var imageUrl = post.select("img").attr("src")
+        Log.d("post",post)
         //val quality = post.select(".video-label").text()
         return newMovieSearchResponse(title, url, TvType.Movie) {
             this.posterUrl = imageUrl
@@ -40,6 +41,7 @@ class Ownfmx : MainAPI() { // all providers must be an instance of MainAPI
         page: Int,
         request: MainPageRequest
     ): HomePageResponse {
+        Log.d("data",request.data)
         val url = "$mainUrl/movies?page=$page/"
         val document = app.get(url).document
         val home = document.select("div.movie-card").mapNotNull {
