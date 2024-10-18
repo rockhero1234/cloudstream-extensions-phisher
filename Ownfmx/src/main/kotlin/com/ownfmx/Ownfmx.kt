@@ -113,3 +113,6 @@ class Ownfmx : MainAPI() { // all providers must be an instance of MainAPI
 
 
 }
+class StreamT : StreamTape() {
+    override var mainUrl = "https://streamtape.to"
+}
