@@ -24,7 +24,7 @@ class Ownfmx : MainAPI() { // all providers must be an instance of MainAPI
         val url = post.select("a").attr("href")
         val title = post.select("img").attr("alt").toString()
         var imageUrl = post.select("img").attr("src")
-        Log.d("post",post)
+        Log.d("post",post.toString())
         //val quality = post.select(".video-label").text()
         return newMovieSearchResponse(title, url, TvType.Movie) {
             this.posterUrl = imageUrl
