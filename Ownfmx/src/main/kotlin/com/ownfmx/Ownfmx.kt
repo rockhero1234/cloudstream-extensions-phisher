@@ -72,32 +72,25 @@ class Ownfmx : MainAPI() { // all providers must be an instance of MainAPI
             it.toSearchResult()
         }
     }
-
+*/
     override suspend fun load(url: String): LoadResponse? {
         val document = app.get(url).document
 
-        val title = document.selectFirst("h2.entry-title")?.text()?.trim()?.substringBefore("(")
-            ?: return null
-        val poster = fixUrlNull(document.selectFirst(".entry-content img")?.attr("src"))
-        val tags =
-            document.select("div.entry-content > p:nth-child(5)").text().substringAfter("Genres:")
-                .substringBefore("Country:").split(",").map { it }
-        val yearRegex = Regex("""\d{4}""")
-        val year = yearRegex.find(
-            document.select("h2.entry-title").text()
-        )?.groupValues?.getOrNull(0)?.toIntOrNull()
-        val description = document.select("div.entry-content > p:nth-child(6)").text().trim()
-        val actors =
+        val title = document.selectFirst("div.text-muted > span")?.text().toString()
+        val poster = fixUrlNull(document.selectFirst("meta[property=og:image]")?.attr("content"))
+        //val yearRegex = Regex("""\d{4}""")
+        //val year = yearRegex.find(
+            //document.select("h2.entry-title").text()
+        //)?.groupValues?.getOrNull(0)?.toIntOrNull()
+       // val description = document.select("div.entry-content > p:nth-child(6)").text().trim()
+       /* val actors =
             document.select("div.entry-content > p:nth-child(5)").text()
                 .substringAfter("Starring by:")
                 .substringBefore("Genres:").split(",").map { it }
-
+*/
         return newMovieLoadResponse(title, url, TvType.Movie, url) {
             this.posterUrl = poster
-            this.year = year
-            this.plot = description
-            this.tags = tags
-            addActors(actors)
+ 
         }
     }
 
@@ -117,6 +110,6 @@ class Ownfmx : MainAPI() { // all providers must be an instance of MainAPI
             )
         return true
     }
-*/
+
 
 }
