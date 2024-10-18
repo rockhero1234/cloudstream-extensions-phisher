@@ -99,8 +99,8 @@ class Ownfmx : MainAPI() { // all providers must be an instance of MainAPI
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit
     ): Boolean {
-        val src = app.get(data).document.select("iframe").attr("src").toString()
-    
+        val src = app.get(data).document.select("iframe").first().attr("src").toString()
+        Log.d("link",src)
         loadExtractor(
                 src,
                 "$mainUrl/",
