@@ -42,7 +42,7 @@ class Ownfmx : MainAPI() { // all providers must be an instance of MainAPI
         request: MainPageRequest
     ): HomePageResponse {
         
-        val url = "$mainUrl/movies?page=$page/"
+        val url = "$mainUrl/movies?page=1/"
         val document = app.get(url).document
         Log.d("data",document.toString())
         Log.d("movies",document.select(".movie-card").toString())
