@@ -88,8 +88,10 @@ open class Hdmovie2 : Movierulzhd() {
                 }
             }
             var gd= document.select("a[href^=https://dwso.com]").first().attr("href")
+            Log.d("dw",gd)
             var gddoc= app.get(gd).document
             gddoc.select("a[href^=https://new6.gdflix]").forEach{link->
+                Log.d("gdflix",link.attr("href"))
                 loadExtractor(
                         link.attr("href"),
                         "$directUrl/",
