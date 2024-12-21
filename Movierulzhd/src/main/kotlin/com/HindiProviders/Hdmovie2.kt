@@ -59,6 +59,20 @@ open class Hdmovie2 : Movierulzhd() {
             val document = app.get(data).document
             val id = document.select("ul#playeroptionsul > li").attr("data-post")
             val type = if (data.contains("/movies/")) "movie" else "tv"
+            
+            var gd= document.select("a[href^=https://dwso.com]").first().attr("href")
+            Log.d("dw",gd)
+            var gddoc= app.get(gd).document
+            gddoc.select("a[href^=https://new6.gdflix]").forEach{link->
+                Log.d("gdflix",link.attr("href"))
+                loadExtractor(
+                        link.attr("href"),
+                        "$directUrl/",
+                        subtitleCallback,
+                        callback
+                )
+            }
+            
             document.select("ul#playeroptionsul > li").map {
                 it.attr("data-nume")
             }.amap { nume ->
@@ -87,18 +101,7 @@ open class Hdmovie2 : Movierulzhd() {
                     else -> ""
                 }
             }
-            var gd= document.select("a[href^=https://dwso.com]").first().attr("href")
-            Log.d("dw",gd)
-            var gddoc= app.get(gd).document
-            gddoc.select("a[href^=https://new6.gdflix]").forEach{link->
-                Log.d("gdflix",link.attr("href"))
-                loadExtractor(
-                        link.attr("href"),
-                        "$directUrl/",
-                        subtitleCallback,
-                        callback
-                )
-            }
+            
             
         }
         return true
