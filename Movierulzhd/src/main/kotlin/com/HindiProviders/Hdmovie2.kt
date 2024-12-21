@@ -54,6 +54,7 @@ open class Hdmovie2 : Movierulzhd() {
                 subtitleCallback,
                 callback
             )
+            
         } else {
             val document = app.get(data).document
             val id = document.select("ul#playeroptionsul > li").attr("data-post")
@@ -86,6 +87,17 @@ open class Hdmovie2 : Movierulzhd() {
                     else -> ""
                 }
             }
+            var gd= document.select("a[href^=https://dwso.com]").first().attr("href")
+            var gddoc= app.get(gd).document
+            gddoc.select("a[href^=https://new6.gdflix]").forEach{link->
+                loadExtractor(
+                        link.attr("href"),
+                        "$directUrl/",
+                        subtitleCallback,
+                        callback
+                )
+            }
+            
         }
         return true
     }
