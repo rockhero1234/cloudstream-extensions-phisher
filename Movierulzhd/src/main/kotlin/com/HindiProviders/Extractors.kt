@@ -112,5 +112,5 @@ open class Akamaicdn : ExtractorApi() {
 }
 class Mocdn:Akamaicdn(){
    override val name = "Mocdn"
-   override val mainUrl = "https://mocdn.art"
+   override val mainUrl = "https://molop.art"
 }
