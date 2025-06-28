@@ -2,7 +2,7 @@ package com.Desicinemas
 
 import com.lagradost.cloudstream3.*
 import org.jsoup.nodes.Element
-
+import android.util.Log
 class BollyzoneProvider : DesicinemasProvider() {
     override val supportedTypes = setOf(
         TvType.TvSeries
@@ -57,8 +57,8 @@ class BollyzoneProvider : DesicinemasProvider() {
         val title = selectFirst("h2.Title")?.text()?.trim() ?: return null
         val href = fixUrlNull(selectFirst("a")?.attr("href")) ?: return null
         val img = selectFirst("img")
-        val posterUrl = fixUrlNull(img?.getImageAttr())
-
+        val posterUrl = fixUrlNull(img?.getImageAttr()) 
+        log.d("img:",posterUrl)
         return newAnimeSearchResponse(title, href) {
             this.posterUrl = posterUrl
         }
