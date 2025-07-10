@@ -52,6 +52,7 @@ open class Hdmovie2 : Movierulzhd() {
                 referer = data,
                 headers = commonHeaders
             ).parsed<ResponseHash>()
+            Log.d("response hd",response.embed_url)
             return response.embed_url.getIframe()
         }
 
