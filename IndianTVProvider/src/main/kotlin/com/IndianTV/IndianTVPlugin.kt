@@ -88,10 +88,11 @@ class IndianTVPlugin : MainAPI() {
 
     override suspend fun load(url: String): LoadResponse {
         val data = parseJson<LoadData>(url)
-        return newLiveStreamLoadResponse(data.title,data.url,url)
+        return newLiveStreamLoadResponse(data.title,data.url)
         {
             this.posterUrl=data.poster
             this.plot=data.nation
+            this.dataUrl=url
         }
     }
     data class LoadData(
